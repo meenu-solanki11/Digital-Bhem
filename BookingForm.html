@@ -1,0 +1,388 @@
+<html>
+
+<head>
+    <title>Register form</title>
+</head>
+<style>
+    /* Importing  Google fonts */
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Roboto:wght@400;500;700&display=swap');
+
+    /* in order to reset by default spacing by browser */
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
+    }
+
+    .parent-container {
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: bisque;
+        background-image: url("bg.jpg");
+    }
+
+    .child-container {
+        width: 90%;
+        padding: 10px;
+        /* background-color: rgba(222, 184, 135, 0.8); */
+        backdrop-filter: blur(7px);
+
+    }
+
+    .sub-heading {
+        text-align: center;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 10px 0px;
+    }
+
+    .personal-info-container,
+    .room-info-container,
+    .room-rent-info-container,
+    .additional-info-container,
+    .guideline-info-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 0;
+        gap: 20px;
+    }
+
+    .personal-info-inner-container,
+    .room-info-inner-container,
+    .additional-inner-info-container,
+    .guideline-inner-info-container {
+        width: 45%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .additional-inner-info-container>span:first-child {
+        width: 40%;
+    }
+
+    .room-rent-inner-info-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .personal-info-inner-container input,
+    .room-info-inner-container select {
+        width: 50%;
+    }
+
+    .button {
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+
+    .button:hover {
+        background-color: khaki;
+    }
+
+    .not-visible {
+        display: none;
+    }
+
+    .visible {
+        display: flex;
+    }
+
+    .error {
+        color: red;
+    }
+
+    .outer-grid-container {
+        display: flex;
+        width: 45%;
+        justify-content: space-between;
+    }
+
+    .outer-grid-container>div:first-child {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 70%;
+        grid-template-rows: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+
+    .grid>div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
+
+<body>
+    <div class="parent-container">
+        <div class="child-container">
+            <span>
+                <font size="8">
+                    <marquee direction="left" behavior="alternate" style="border:black 2px SOLID" hspace="20px">
+                        HOTEL'S ROOM BOOKING REGISTER FORM</marquee>
+                </font>
+            </span>
+
+            <span class="sub-heading">
+                <font size="6" face="Segoe MDL2 Assets">FILL THE ABOVE FORM TO BOOK ROOM</font>
+            </span>
+
+            <form onsubmit="handleSubmitForm(event)">
+                <div class="personal-info-container">
+                    <div class="personal-info-inner-container">
+                        <span>Customer's Name :</span>
+                        <input id="name" type="text" />
+                    </div>
+                    <div class="personal-info-inner-container">
+                        <span>Check-In Date</span>
+                        <input id="check-in-date" type="date" />
+                    </div>
+                    <div class="personal-info-inner-container">
+                        <span>Check-In Time</span>
+                        <input id="check-in-time" type="time" />
+                    </div>
+                    <div class="personal-info-inner-container">
+                        <span>Total No. Of Day</span>
+                        <input id="number-of-days" type="text" />
+                    </div>
+                    <div class="personal-info-inner-container">
+                        <span>Total No. Of Person</span>
+                        <input id="number-of-person" type="text" />
+                    </div>
+                </div>
+
+                <div class="room-info-container">
+                    <span>
+                        <font size="6" face="Segoe MDL2 Assets">ROOM INFORMATION</font>
+                    </span>
+
+                    <div class="outer-grid-container">
+                        <div>
+                            <div>
+                                <span>Room Type :</span>
+                            </div>
+                            <div>
+                                <span>Amenities Type : </span>
+                            </div>
+                        </div>
+                        <div class="grid">
+                            <div class="room-rent-inner-info-container is-delux-include">
+                                <span>Delux Room : 2500/-</span>
+                                <input value="2500" onchange="handleCheckBox(event, 'delux-room')" id="delux-room"
+                                    type="checkbox" />
+                            </div>
+
+                            <div class="room-rent-inner-info-container  is-suite-include">
+                                <span>Suite Room : 4000/-</span>
+                                <input value="4000" onchange="handleCheckBox(event, 'suite-room')" id="suite-room"
+                                    type="checkbox" />
+                            </div>
+
+                            <div class="room-rent-inner-info-container is-ac-include">
+                                <span>AC : 1000/-</span>
+                                <input value="1000" onchange="handleCheckBox(event, 'ac')" id="ac" type="checkbox" />
+                            </div>
+
+                            <div class="room-rent-inner-info-container is-locker-include">
+                                <span>Locker : 300/-</span>
+                                <input value="300" onchange="handleCheckBox(event, 'locker')" id="locker"
+                                    type="checkbox" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="room-rent-info-container not-visible">
+                    <span>
+                        <font size="6" face="Segoe MDL2 Assets">ROOM RENT</font>
+                    </span>
+
+                    <div class="additional-inner-info-container auto-room-container not-visible">
+                        <span>Total Room Cost :</span>
+                        <span class="days"></span>
+                        <span class="auto-room-cost"></span>
+                    </div>
+
+                    <div class="additional-inner-info-container auto-amenities-container not-visible">
+                        <span>Total Amenities Cost :</span>
+                        <span class="days"></span>
+                        <span class="auto-amenities-cost"></span>
+                    </div>
+
+                    <div class="additional-inner-info-container auto-total-container not-visible">
+                        <span>Total Cost :</span>
+                        <span class="auto-total_cost"></span>
+                    </div>
+
+                </div>
+
+                <div class="additional-info-container not-visible">
+                    <div class="additional-inner-info-container">
+                        <span>ADVANCE AMOUNT :</span>
+                        <input onchange="handleAdvanceAmount(event)" id="advance-amount" type="number" size="100" />
+                    </div>
+                    <span class="error not-visible">Advance amount can not be more than balance amount</span>
+                    <div class="additional-inner-info-container">
+                        <span>Balance Amount :</span>
+                        <span class="total_balance_amount">0/-</span>
+                    </div>
+                </div>
+
+                <div class="guideline-info-container">
+                    <div class="guideline-inner-info-container">
+                        <span>
+                            <p style="font-weight: bold;">PLEASE NOTE :</p> Upto 2 People - No Change in Cost <br>
+                            <span>
+                                Per Day Cost For Extra Person :- 100/-
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="guideline-inner-info-container">
+                        <button type="submit" class="button">Submit</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+
+        // Exracting the values from input/checkbox/dropdown fields at once rather than calling saperate functions.
+
+        // Personal Info
+        let customerName = document.getElementById('name');
+        let checkInDate = document.getElementById('check-in-date');
+        let checkInTime = document.getElementById('check-in-time');
+        let totalDays = document.getElementById('number-of-days');
+        let totalPerson = document.getElementById('number-of-person');
+
+        // Room Info
+        let roomType = document.getElementById('room-type');
+        let amenities = document.getElementById('amenities');
+
+        // Get the elements for checkbox
+        let visibleDeluxInclude = document.getElementsByClassName('is-delux-include')
+        let visibleSuiteInclude = document.getElementsByClassName('is-suite-include')
+        let visibleAcInclude = document.getElementsByClassName('is-ac-include')
+        let visibleLockerInclude = document.getElementsByClassName('is-locker-include');
+        let totalBalanceAmount = document.getElementsByClassName('total_balance_amount');
+
+        // Total Calculation Text
+        let totalRoomCost = document.getElementsByClassName("auto-room-cost");
+        let totalAmenetiesCost = document.getElementsByClassName("auto-amenities-cost");
+        let totalAutoCost = document.getElementsByClassName("auto-total_cost");
+        let days = document.getElementsByClassName("days");
+        let roomRentContainer = document.getElementsByClassName("room-rent-info-container");
+        let additionalInfoContainer = document.getElementsByClassName("additional-info-container");
+
+        // Their Containers 
+        let totalRoomContainer = document.getElementsByClassName("auto-room-container");
+        let totalAmenetiesContainer = document.getElementsByClassName("auto-amenities-container");
+        let totalCostContainer = document.getElementsByClassName("auto-total-container");
+
+        // Show Error
+        let isError = document.getElementsByClassName("error")
+
+        let total_balance_amount = 0;
+        let total_room_cost = 0;
+        let total_amenties_cost = 0;
+        let total_amount = 0;
+
+        // Additional Info
+        let advancedAmount = document.getElementById('advance-amount');
+
+
+        // We are storing the values of checkbox in the total balance amount
+        function handleCheckBox(event, type) {
+
+            if (type === 'delux-room') {
+                totalRoomContainer[0].classList.add("visible");
+                total_room_cost += parseInt(event.target.value);
+                total_balance_amount += parseInt(event.target.value) * parseInt(totalDays.value);
+            } else if (type === "suite-room") {
+                totalRoomContainer[0].classList.add("visible");
+                total_room_cost += parseInt(event.target.value);
+                total_balance_amount += parseInt(event.target.value) * parseInt(totalDays.value);
+            } else if (type === "ac") {
+                totalAmenetiesContainer[0].classList.add("visible");
+                total_amenties_cost += parseInt(event.target.value);
+                total_balance_amount += parseInt(event.target.value) * parseInt(totalDays.value);
+            } else if (type === "locker") {
+                totalAmenetiesContainer[0].classList.add("visible");
+                total_amenties_cost += parseInt(event.target.value);
+                total_balance_amount += parseInt(event.target.value) * parseInt(totalDays.value);
+            }
+
+            days[0].innerText = totalDays.value + "X  ";
+            days[1].innerText = totalDays.value + "X  ";
+            totalAutoCost[0].innerText = total_balance_amount + '/-';
+            totalRoomCost[0].innerText = total_room_cost + "/-";
+            totalAmenetiesCost[0].innerText = total_amenties_cost + "/-";
+            totalBalanceAmount[0].innerText = total_balance_amount + "/-";
+            totalCostContainer[0].classList.add("visible");
+            roomRentContainer[0].classList.add("visible");
+            additionalInfoContainer[0].classList.add("visible");
+        }
+
+        // Handle Advance Amount
+        function handleAdvanceAmount(event) {
+            let storedValue = 0;
+            storedValue = total_balance_amount;
+            if (event.target.value > total_balance_amount) {
+                isError[0].classList.toggle('visible');
+            }
+            else if (event.target.value <= total_balance_amount) {
+                isError[0].classList.remove('visible');
+                storedValue -= event.target.value;
+                totalBalanceAmount[0].innerText = storedValue + "/-";
+            }
+        }
+
+        function handleSubmitForm(event) {
+
+            // to prevent the refreshing behaviour of the form while submitting.
+            event.preventDefault();
+
+            // Here we are checking if all the values are filled or not. if not then throw warning
+            if (customerName.value === "" || checkInDate.value === "" ||
+                checkInTime.value === "" || totalDays.value === ""
+                || totalPerson.value === "" || total_balance_amount === 0) {
+                alert("Please fill All the details")
+            } else {
+                console.log("Customer Name", customerName.value);
+                console.log("Check In Date", checkInDate.value);
+                console.log("Check In Time", checkInTime.value);
+                console.log("Total Days", totalDays.value);
+                console.log("Total Person", totalPerson.value);
+                console.log("total Advance amount", total_balance_amount)
+                alert("Submitted")
+            }
+         }
+    </script>
+</body>
+
+</html>
